@@ -1,9 +1,11 @@
 <script>
+  import { appRoute } from './store';
+
   let name;
 
   function sayHello () {
     if (name) {
-      location.hash = `#hello/${name.split(' ')[0]}`;
+      $appRoute = `hello/${name.split(' ')[0]}`;
     }
   }
 </script>

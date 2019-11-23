@@ -10,6 +10,8 @@
 
   import rlite from "rlite-router";
 
+  import { appRoute } from './store';
+
   let route = {};
   let screen = Loading;
 
@@ -30,21 +32,9 @@
     'hello/:name': routeScreen(Hello),
   });
 
-  // Hash-based routing
-  function processHash() {
-    const hash = location.hash || "#";
-    runRouter(hash.slice(1));
+  $: {
+    runRouter($appRoute);
   }
-
-  onMount(() => {
-    processHash();
-
-    window.addEventListener("hashchange", processHash);
-
-    return () => {
-      window.removeEventListener("hashchnage", processHash);
-    };
-  });
 </script>
 
 <svelte:component this={screen} {route} />
